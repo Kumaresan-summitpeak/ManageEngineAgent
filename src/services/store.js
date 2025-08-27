@@ -1,5 +1,10 @@
 const User = require("../Models/UserModel");
 
+/**
+ * @description It will the user data and return.
+ * @param {*} data 
+ * @returns user{Object}
+ */
 const storeUser = async (data = {}) => {
     try {
         const { teamsChatId, type } = data;
@@ -22,6 +27,11 @@ const storeUser = async (data = {}) => {
     }
 }
 
+/**
+ * @description It will accepts the teamsChatId and type and query the user and return
+ * @param {*} data 
+ * @returns user {Object}
+ */
 const getUser = async (data = {}) => {
     try {
         const { teamsChatId, type } = data;
