@@ -1,0 +1,7 @@
+[
+    {
+        "name": "LightsOn",
+        "description": "This action handle to turn the lights",
+        "parameters": {}
+    }
+]
