@@ -3,5 +3,10 @@
         "name": "createTicket",
         "description": "This will gives the template based available tickets in manage engine.",
         "parameters": {}
+    },
+    {
+        "name":"dynamicTemplate",
+        "description": "This will gives the dynamic search template.",
+        "parameters": {}
     }
 ]

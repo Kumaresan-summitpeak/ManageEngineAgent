@@ -2,7 +2,7 @@
  * @param {*} context This is the context of the teams user request.
  */
 
-const ticketTemplateAdaptiveCard = async (context) => {
+const ticketTemplateAdaptiveCard = async () => {
     try {
         const logoUrl = "https://res.cloudinary.com/drbwap9x5/image/upload/v1756280539/manageengine-logo-black_bniq9j.png";
 
@@ -179,25 +179,25 @@ const ticketTemplateAdaptiveCard = async (context) => {
                     "type": "Action.Submit",
                     "title": "ServiceRequests",
                     "style": "positive",
-                    "data": { "verb": "selectTicketType", "ticketType": "Service Request" }
+                    "data": { "verb": "ServiceRequests" }
                 },
                 {
                     "type": "Action.Submit",
                     "title": "Problems",
                     "style": "positive",
-                    "data": { "verb": "selectTicketType", "ticketType": "Problem" }
+                    "data": { "verb": "Problems" }
                 },
                 {
                     "type": "Action.Submit",
                     "title": "Changes",
                     "style": "positive",
-                    "data": { "verb": "selectTicketType", "ticketType": "Change" }
+                    "data": { "verb": "Changes" }
                 },
                 {
                     "type": "Action.Submit",
                     "title": "Release",
                     "style": "positive",
-                    "data": { "verb": "selectTicketType", "ticketType": "Release" }
+                    "data": { "verb": "Release" }
                 }
             ]
         }
