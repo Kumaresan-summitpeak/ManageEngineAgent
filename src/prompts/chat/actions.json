@@ -1,7 +1,7 @@
 [
     {
-        "name": "LightsOn",
-        "description": "This action handle to turn the lights",
+        "name": "createTicket",
+        "description": "This will gives the template based available tickets in manage engine.",
         "parameters": {}
     }
 ]

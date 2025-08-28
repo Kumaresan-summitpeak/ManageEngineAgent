@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 /**
- * User schema for MongoDB
+ * @description User schema for MongoDB
  */
 const UserSchema = new mongoose.Schema({
     teamsChatId: {

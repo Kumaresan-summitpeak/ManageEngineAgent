@@ -96,4 +96,4 @@ async function httpRequest(teamsChatId, type, url, method = "GET", data = null) 
 }
 
 
-module.exports = { httpRequest, outlookHttpRequest };
+module.exports = { httpRequest };

@@ -66,7 +66,7 @@ function createClient(teamsChatId, type) {
     client.interceptors.response.use(
         (response) => response,
         async (error) => {
-            console.log("🔄 Intercepted error response:", error.response);
+            console.error("🔄 Intercepted error response:", error.response);
             if (error.response?.status === 401) {
                 console.warn("Unauthorized access");
                 const { status = false, user } = await getUser(teamsChatId, type);
