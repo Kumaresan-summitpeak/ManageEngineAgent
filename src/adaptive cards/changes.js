@@ -140,7 +140,7 @@ const changesAdaptiveCard = () => {
                     "type": "Action.Submit",
                     "title": "Submit Change Request",
                     "data": {
-                        "action": "submitChange"
+                        "verb": "Submit Change Request"
                     },
                     "style": "positive"
                 }

@@ -11,6 +11,10 @@ const { serviceRequestsActionHandler } = require("../controllers/adaptiveCardsAc
 const { changesActionHandler } = require("../controllers/adaptiveCardsActionHandlers/changes");
 const { problemsActionHandler } = require("../controllers/adaptiveCardsActionHandlers/problems");
 const { releaseActionHandler } = require("../controllers/adaptiveCardsActionHandlers/release");
+const { summitChangesRequestTicket } = require("../controllers/tickets/summitChangesTicket");
+const { summitProblemsRequestTicket } = require("../controllers/tickets/summitProblemTicket");
+const { summitReleaseRequestTicket } = require("../controllers/tickets/summitReleaseTicket");
+const { summitRequestTicket } = require("../controllers/tickets/summitRequestTicket");
 
 // See https://aka.ms/teams-ai-library to learn more about the Teams AI library.
 const { Application, ActionPlanner, OpenAIModel, PromptManager } = require("@microsoft/teams-ai");
@@ -52,6 +56,13 @@ app.adaptiveCards.actionSubmit('ServiceRequests', serviceRequestsActionHandler);
 app.adaptiveCards.actionSubmit('Problems', problemsActionHandler);
 app.adaptiveCards.actionSubmit('Changes', changesActionHandler);
 app.adaptiveCards.actionSubmit('Release', releaseActionHandler);
+
+// Summiting the form data;
+app.adaptiveCards.actionSubmit('Submit Change Request', summitChangesRequestTicket);
+app.adaptiveCards.actionSubmit('Submit Problem', summitProblemsRequestTicket);
+app.adaptiveCards.actionSubmit('Submit Release Request', summitReleaseRequestTicket);
+app.adaptiveCards.actionSubmit('Submit Request', summitRequestTicket);
+
 
 // Listen for user to say '/login' and then delete conversation state
 app.message('/login', async (context, state) => {

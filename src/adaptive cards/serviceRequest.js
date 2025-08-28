@@ -128,9 +128,9 @@ const serviceRequestAdaptiveCard = () => {
             "actions": [
                 {
                     "type": "Action.Submit",
-                    "title": "Submit Ticket",
+                    "title": "Submit Request",
                     "data": {
-                        "action": "submitTicket"
+                        "verb": "Submit Request"
                     },
                     "style": "positive"
                 }

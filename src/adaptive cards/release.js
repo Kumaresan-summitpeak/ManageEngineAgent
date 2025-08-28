@@ -120,7 +120,7 @@ const releaseAdaptiveCard = () => {
                     "type": "Action.Submit",
                     "title": "Submit Release Request",
                     "data": {
-                        "action": "submitRelease"
+                        "verb": "Submit Release Request"
                     },
                     "style": "positive"
                 }
