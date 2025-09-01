@@ -63,7 +63,7 @@ async function httpRequest(teamsChatId, type, url, method = "GET", data = null) 
         const { status, user } = await getUser(teamsChatId, type);
 
         if (!status) {
-            throw new Error("User is not authenticated with Salesforce");
+            throw new Error("User is not authenticated.");
         }
 
         // It will create the Http client and return

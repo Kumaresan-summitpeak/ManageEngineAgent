@@ -10,8 +10,8 @@ const manageEngineSSOAdaptiveCard = async (context) => {
         const { ZohoBaseUrl, ZohoClientId, ZohoRedirectUrl, ZohoOauthScope } = env;
         const userId = context.activity.from.id;
         const conversationReference = TurnContext.getConversationReference(context.activity);
-
-        const authState = Buffer.from(JSON.stringify({ userId, conversationReference })).toString("base64url")
+        const nonce = Math.random().toString(36).substring(2);
+        const authState = Buffer.from(JSON.stringify({ userId, nonce, conversationReference })).toString("base64url")
         const card = {
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",

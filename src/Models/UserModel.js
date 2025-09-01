@@ -25,6 +25,33 @@ const UserSchema = new mongoose.Schema({
     loginUrl: {
         type: String,
         trim: true
+    },
+    firstName: {
+        type: String,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        trim: true
+    },
+    name: {
+        type: String,
+        trim: true
+    },
+    sub: {
+        type: String,
+        trim: true
+    },
+    aud: {
+        type: String,
+        trim: true
+    },
+    emailVerified: {
+        type: Boolean
+    },
+    email: {
+        type: String,
+        trim: true
     }
 }, {
     timestamps: true,

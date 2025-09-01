@@ -10,6 +10,7 @@ const app = require("./app/app");
 const MongoDbConnection = require("./configs/mongoose");
 const env = require("./config");
 const { storeUser } = require("./services/store");
+const { jwtDecode } = require("./utils/jwt");
 
 // Create express application.
 const expressApp = express();
@@ -58,6 +59,7 @@ expressApp.get("/manageEngine/callback", async (req, res) => {
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
 
+    const decodeToken = await jwtDecode(data.id_token)
     // Store the user token
     await storeUser({
       teamsChatId: userId,
@@ -65,6 +67,13 @@ expressApp.get("/manageEngine/callback", async (req, res) => {
       accessToken: data.access_token,
       refreshToken: data.refresh_token,
       loginUrl: `${ZohoBaseUrl}/oauth/v2/token`,
+      firstName: decodeToken.first_name,
+      lastName: decodeToken.last_name,
+      name: decodeToken.name,
+      email: decodeToken?.email,
+      sub: decodeToken.sub,
+      aud: decodeToken.aud,
+      emailVerified: decodeToken.email_verified
     }
     );
 
