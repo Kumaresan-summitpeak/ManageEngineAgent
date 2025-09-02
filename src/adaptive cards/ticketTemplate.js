@@ -4,65 +4,69 @@
 
 const ticketTemplateAdaptiveCard = async () => {
     try {
-        const logoUrl = "https://res.cloudinary.com/drbwap9x5/image/upload/v1756280539/manageengine-logo-black_bniq9j.png";
 
         const card = {
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",
-            "version": "1.3",
+            "version": "1.5",
             "body": [
                 {
                     "type": "TextBlock",
-                    "text": "Choose a Ticket Type",
+                    "text": "📌 Issues Catalog",
                     "weight": "Bolder",
                     "size": "Large",
-                    "horizontalAlignment": "Center"
+                    "horizontalAlignment": "Center",
+                    "wrap": true
                 },
                 {
                     "type": "TextBlock",
-                    "text": "Pick the type that matches what you need. We’ll show matching templates next.",
-                    "wrap": true,
-                    "horizontalAlignment": "Center"
-                },
-                {
-                    "type": "Image",
-                    "url": logoUrl,
-                    "size": "Stretch",
-                    "horizontalAlignment": "Center"
-                },
-                {
-                    "type": "TextBlock",
-                    "text": "Common types in ManageEngine ServiceDesk Plus:",
+                    "text": "Select an issue type below to raise a ticket",
                     "wrap": true,
                     "horizontalAlignment": "Center",
-                    "weight": "Bolder",
-                    "spacing": "Medium"
+                    "size": "Medium",
+                    "spacing": "Small"
                 },
                 {
-                    "type": "ColumnSet",
-                    "spacing": "Small",
-                    "columns": [
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "DesktopSupport" }
+                    },
+                    "items": [
                         {
-                            "type": "Column",
-                            "width": "stretch",
-                            "items": [
+                            "type": "ColumnSet",
+                            "columns": [
                                 {
-                                    "type": "Container",
-                                    "style": "emphasis",
-                                    "bleed": true,
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4bb.png",
+                                            "size": "Small",
+                                            "altText": "Desktop"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "Service Requests",
+                                            "text": "Desktop Support",
                                             "weight": "Bolder",
                                             "wrap": true
                                         },
                                         {
                                             "type": "TextBlock",
-                                            "spacing": "None",
+                                            "text": "For issues related to your desktop computer",
                                             "isSubtle": true,
                                             "wrap": true,
-                                            "text": "Submit requests for new services, resources, or access—such as software installation, account creation, or hardware provisioning."
+                                            "spacing": "None"
                                         }
                                     ]
                                 }
@@ -71,30 +75,46 @@ const ticketTemplateAdaptiveCard = async () => {
                     ]
                 },
                 {
-                    "type": "ColumnSet",
-                    "spacing": "Small",
-                    "columns": [
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "SoftwareSupport" }
+                    },
+                    "items": [
                         {
-                            "type": "Column",
-                            "width": "stretch",
-                            "items": [
+                            "type": "ColumnSet",
+                            "columns": [
                                 {
-                                    "type": "Container",
-                                    "style": "emphasis",
-                                    "bleed": true,
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4be.png",
+                                            "size": "Small",
+                                            "altText": "Software"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "Problems",
+                                            "text": "Software Support",
                                             "weight": "Bolder",
                                             "wrap": true
                                         },
                                         {
                                             "type": "TextBlock",
-                                            "spacing": "None",
+                                            "text": "For issues with software applications",
                                             "isSubtle": true,
                                             "wrap": true,
-                                            "text": "Report underlying issues that may be causing recurring service disruptions, requiring investigation and resolution."
+                                            "spacing": "None"
                                         }
                                     ]
                                 }
@@ -103,30 +123,46 @@ const ticketTemplateAdaptiveCard = async () => {
                     ]
                 },
                 {
-                    "type": "ColumnSet",
-                    "spacing": "Small",
-                    "columns": [
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "ServerSupport" }
+                    },
+                    "items": [
                         {
-                            "type": "Column",
-                            "width": "stretch",
-                            "items": [
+                            "type": "ColumnSet",
+                            "columns": [
                                 {
-                                    "type": "Container",
-                                    "style": "emphasis",
-                                    "bleed": true,
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f5a5.png",
+                                            "size": "Small",
+                                            "altText": "Server"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "Changes",
+                                            "text": "Server Support",
                                             "weight": "Bolder",
                                             "wrap": true
                                         },
                                         {
                                             "type": "TextBlock",
-                                            "spacing": "None",
+                                            "text": "For issues with server-related services",
                                             "isSubtle": true,
                                             "wrap": true,
-                                            "text": "Submit and manage requests for planned changes to systems, configurations, or infrastructure (e.g., software updates, firewall modifications)."
+                                            "spacing": "None"
                                         }
                                     ]
                                 }
@@ -135,30 +171,46 @@ const ticketTemplateAdaptiveCard = async () => {
                     ]
                 },
                 {
-                    "type": "ColumnSet",
-                    "spacing": "Small",
-                    "columns": [
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "NetworkSupport" }
+                    },
+                    "items": [
                         {
-                            "type": "Column",
-                            "width": "stretch",
-                            "items": [
+                            "type": "ColumnSet",
+                            "columns": [
                                 {
-                                    "type": "Container",
-                                    "style": "emphasis",
-                                    "bleed": true,
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f578.png",
+                                            "size": "Small",
+                                            "altText": "Network"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
                                     "items": [
                                         {
                                             "type": "TextBlock",
-                                            "text": "Release",
+                                            "text": "Network Support",
                                             "weight": "Bolder",
                                             "wrap": true
                                         },
                                         {
                                             "type": "TextBlock",
-                                            "spacing": "None",
+                                            "text": "For issues with network connectivity",
                                             "isSubtle": true,
                                             "wrap": true,
-                                            "text": "Manage and coordinate the deployment of new features, fixes, or updates across systems and environments."
+                                            "spacing": "None"
                                         }
                                     ]
                                 }
@@ -167,37 +219,244 @@ const ticketTemplateAdaptiveCard = async () => {
                     ]
                 },
                 {
-                    "type": "TextBlock",
-                    "text": "Select a type to see available templates.",
-                    "wrap": true,
-                    "horizontalAlignment": "Center",
-                    "spacing": "Medium"
-                }
-            ],
-            "actions": [
-                {
-                    "type": "Action.Submit",
-                    "title": "ServiceRequests",
-                    "style": "positive",
-                    "data": { "verb": "ServiceRequests" }
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "AwsSupport" }
+                    },
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/2601.png",
+                                            "size": "Small",
+                                            "altText": "Cloud"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "AWS Support",
+                                            "weight": "Bolder",
+                                            "wrap": true
+                                        },
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "For issues with AWS services",
+                                            "isSubtle": true,
+                                            "wrap": true,
+                                            "spacing": "None"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "type": "Action.Submit",
-                    "title": "Problems",
-                    "style": "positive",
-                    "data": { "verb": "Problems" }
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "SvnSupport" }
+                    },
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f4c1.png",
+                                            "size": "Small",
+                                            "altText": "Folder"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "SVN Support",
+                                            "weight": "Bolder",
+                                            "wrap": true
+                                        },
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "For issues with SVN repository access or usage",
+                                            "isSubtle": true,
+                                            "wrap": true,
+                                            "spacing": "None"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "type": "Action.Submit",
-                    "title": "Changes",
-                    "style": "positive",
-                    "data": { "verb": "Changes" }
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "OthersHardwareSupport" }
+                    },
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f3ab.png",
+                                            "size": "Small",
+                                            "altText": "Ticket"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Others (Hardware)",
+                                            "weight": "Bolder",
+                                            "wrap": true
+                                        },
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Issues related to other hardware",
+                                            "isSubtle": true,
+                                            "wrap": true,
+                                            "spacing": "None"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "type": "Action.Submit",
-                    "title": "Release",
-                    "style": "positive",
-                    "data": { "verb": "Release" }
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "PasswordIssues" }
+                    },
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f511.png",
+                                            "size": "Small",
+                                            "altText": "Key"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Password Issues",
+                                            "weight": "Bolder",
+                                            "wrap": true
+                                        },
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Outlook / MS Teams / Homepage / Laptop login",
+                                            "isSubtle": true,
+                                            "wrap": true,
+                                            "spacing": "None"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "style": "emphasis",
+                    "bleed": true,
+                    "spacing": "Medium",
+                    "selectAction": {
+                        "type": "Action.Submit",
+                        "data": { "verb": "DesktopLaptopPrintersSupport" }
+                    },
+                    "items": [
+                        {
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type": "Column",
+                                    "width": "auto",
+                                    "items": [
+                                        {
+                                            "type": "Image",
+                                            "url": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f5a8.png",
+                                            "size": "Small",
+                                            "altText": "Printer"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Column",
+                                    "width": "stretch",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Desktops / Laptops / Printers",
+                                            "weight": "Bolder",
+                                            "wrap": true
+                                        },
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "For all issues related to Desktops / Laptops / Printers",
+                                            "isSubtle": true,
+                                            "wrap": true,
+                                            "spacing": "None"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

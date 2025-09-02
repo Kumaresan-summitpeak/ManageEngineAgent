@@ -5,8 +5,13 @@
         "parameters": {}
     },
     {
-        "name":"dynamicTemplate",
-        "description": "This will gives the dynamic search template.",
+        "name":"deskTopSupport",
+        "description": "This will gives the desktop ticket template.",
+        "parameters": {}
+    },
+    {
+        "name":"softwareSupport",
+        "description": "This will gives the software ticket template.",
         "parameters": {}
     }
 ]

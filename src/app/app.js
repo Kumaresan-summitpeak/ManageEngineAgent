@@ -6,15 +6,10 @@ const { manageEngineSSOAdaptiveCard } = require("../adaptive cards/manageEngine"
 const { userAuthentication } = require("../middlewares/user");
 const { ticketTemplate } = require("../controllers/tickets/createTicketTemplate");
 
+
 // Handler imports
-const { serviceRequestsActionHandler } = require("../controllers/adaptiveCardsActionHandlers/serviceRequests");
-const { changesActionHandler } = require("../controllers/adaptiveCardsActionHandlers/changes");
-const { problemsActionHandler } = require("../controllers/adaptiveCardsActionHandlers/problems");
-const { releaseActionHandler } = require("../controllers/adaptiveCardsActionHandlers/release");
-const { summitChangesRequestTicket } = require("../controllers/tickets/summitChangesTicket");
-const { summitProblemsRequestTicket } = require("../controllers/tickets/summitProblemTicket");
-const { summitReleaseRequestTicket } = require("../controllers/tickets/summitReleaseTicket");
-const { summitRequestTicket } = require("../controllers/tickets/summitRequestTicket");
+const { desktopSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/desktopSupportTickets");
+const { softwareSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/softwareSupportTickets");
 
 // See https://aka.ms/teams-ai-library to learn more about the Teams AI library.
 const { Application, ActionPlanner, OpenAIModel, PromptManager } = require("@microsoft/teams-ai");
@@ -50,18 +45,13 @@ const app = new Application({
 
 // Handle the action here.
 app.ai.action("createTicket", ticketTemplate);
+app.ai.action("deskTopSupport", desktopSupportTicketActionHandler);
+app.ai.action("softwareSupport", softwareSupportTicketActionHandler);
 
 // Adaptive cards
-app.adaptiveCards.actionSubmit('ServiceRequests', serviceRequestsActionHandler);
-app.adaptiveCards.actionSubmit('Problems', problemsActionHandler);
-app.adaptiveCards.actionSubmit('Changes', changesActionHandler);
-app.adaptiveCards.actionSubmit('Release', releaseActionHandler);
+app.adaptiveCards.actionSubmit('DesktopSupport', desktopSupportTicketActionHandler);
+app.adaptiveCards.actionSubmit('SoftwareSupport', softwareSupportTicketActionHandler);
 
-// Summiting the form data;
-app.adaptiveCards.actionSubmit('Submit Change Request', summitChangesRequestTicket);
-app.adaptiveCards.actionSubmit('Submit Problem', summitProblemsRequestTicket);
-app.adaptiveCards.actionSubmit('Submit Release Request', summitReleaseRequestTicket);
-app.adaptiveCards.actionSubmit('Submit Request', summitRequestTicket);
 
 
 // Listen for user to say '/login' and then delete conversation state
