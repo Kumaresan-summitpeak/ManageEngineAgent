@@ -13,5 +13,11 @@
         "name":"softwareSupport",
         "description": "This will gives the software ticket template.",
         "parameters": {}
+    },
+    {
+        "name":"desktopSupportPasswordIssues",
+        "description": "This will gives the desktop support password issues ticket template.",
+        "parameters": {}
     }
+
 ]

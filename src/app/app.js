@@ -10,6 +10,10 @@ const { ticketTemplate } = require("../controllers/tickets/createTicketTemplate"
 // Handler imports
 const { desktopSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/desktopSupportTickets");
 const { softwareSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/softwareSupportTickets");
+const { desktopSupportasswordIssueTicketForm } = require("../controllers/adaptiveCardsActionHandlers/desktopSupportPasswordIssue");
+
+// Requestimports
+const { desktopSupportPasswordIssueRequest } = require("../controllers/requests/desktopSupportPasswordIssueRequest");
 
 // See https://aka.ms/teams-ai-library to learn more about the Teams AI library.
 const { Application, ActionPlanner, OpenAIModel, PromptManager } = require("@microsoft/teams-ai");
@@ -47,11 +51,14 @@ const app = new Application({
 app.ai.action("createTicket", ticketTemplate);
 app.ai.action("deskTopSupport", desktopSupportTicketActionHandler);
 app.ai.action("softwareSupport", softwareSupportTicketActionHandler);
+app.ai.action("desktopSupportPasswordIssues", desktopSupportasswordIssueTicketForm);
+
 
 // Adaptive cards
 app.adaptiveCards.actionSubmit('DesktopSupport', desktopSupportTicketActionHandler);
 app.adaptiveCards.actionSubmit('SoftwareSupport', softwareSupportTicketActionHandler);
-
+app.adaptiveCards.actionSubmit("DesktopSupportPasswordIssuesTicket", desktopSupportasswordIssueTicketForm);
+app.adaptiveCards.actionSubmit("CreatePasswordIssueTicket", desktopSupportPasswordIssueRequest)
 
 
 // Listen for user to say '/login' and then delete conversation state

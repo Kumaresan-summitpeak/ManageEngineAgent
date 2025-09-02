@@ -1,6 +1,9 @@
 const axios = require("axios");
-const { getUser, storeUser } = require("../services/store");
-const { ZohoClientId, ZohoClientSecret, ZohoRedirectUrl } = require("../config");
+const { getUser, storeUser, getManageEngineCredientials, updateManageEngineCredientials } = require("../services/store");
+const { ZohoClientId, ZohoClientSecret, ZohoRedirectUrl, ZohoBaseUrl } = require("../config");
+
+
+
 
 
 /**
@@ -95,5 +98,60 @@ function createClient(teamsChatId, type) {
 }
 
 
+async function manageEnginerefreshAndGetAccessToken() {
+    try {
 
-module.exports = { createClient };
+        const credientials = await getManageEngineCredientials()
+        // Build form body
+        let result;
+        result = {
+            grant_type: "refresh_token",
+            client_id: credientials.clientId,
+            client_secret: credientials.clientSecret,
+            refresh_token: credientials.refreshToken,
+        }
+
+        const body = new URLSearchParams(result);
+
+        // Send POST with body
+        const { data } = await axios.post(
+            `${ZohoBaseUrl}/oauth/v2/token`,
+            body.toString(),
+            { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+        );
+
+        await updateManageEngineCredientials(data.access_token)
+
+        return data.access_token;
+    } catch (error) {
+        console.error("❌ Failed to refresh token:", error.response?.data || error.message);
+        throw error;
+    }
+}
+
+function manageEngineClient() {
+    const client = axios.create();
+
+    // Attach interceptor
+    client.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+            console.error("🔄 Intercepted error response:", error.response);
+            if (error.response?.status === 401) {
+                console.warn("Unauthorized access");
+
+                const newAccessToken = await manageEnginerefreshAndGetAccessToken()
+                error.config.headers["Authorization"] = `Zoho-oauthtoken ${newAccessToken}`;
+
+                return client.request(error.config);
+            }
+            return Promise.reject(error);
+        }
+    );
+
+    return client;
+}
+
+
+
+module.exports = { createClient, manageEngineClient };

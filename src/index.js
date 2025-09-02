@@ -11,6 +11,7 @@ const MongoDbConnection = require("./configs/mongoose");
 const env = require("./config");
 const { storeUser } = require("./services/store");
 const { jwtDecode } = require("./utils/jwt");
+const { storeManageEngineCredientials } = require("./controllers/manageEngineCredientials/storeManageEngineCredientials");
 
 // Create express application.
 const expressApp = express();
@@ -31,6 +32,9 @@ expressApp.post("/api/messages", async (req, res) => {
     await app.run(context);
   });
 });
+
+
+expressApp.post("/api/manageEngine", storeManageEngineCredientials);
 
 /**
  * @ callback function for manageEngine accesstoken.

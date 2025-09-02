@@ -1,4 +1,5 @@
 const User = require("../Models/UserModel");
+const ManageEngineCredientialsSchema = require("../Models/manageEngineCredientialsModel")
 
 /**
  * @description It will the user data and return.
@@ -52,6 +53,40 @@ const getUser = async (data = {}) => {
     }
 }
 
+const getManageEngineCredientials = async () => {
+    try {
+        const credientials = await ManageEngineCredientialsSchema.findOne({ isActive: true })
+
+        if (!credientials) {
+            throw new Error("Manageengine credientials not found.");
+        }
+        return credientials;
+    } catch (error) {
+        console.error("Error in getting manageengine credientials:", error);
+        throw error;
+    }
+}
+
+const updateManageEngineCredientials = async (accessToken) => {
+    try {
+
+        const credientials = await ManageEngineCredientialsSchema.findOneAndUpdate(
+            { isActive: true },
+            { accessToken },
+            { new: true }
+        )
+
+        if (!credientials) {
+            throw new Error("Manageengine credientials not found.");
+        }
+
+        return credientials;
+    } catch (error) {
+        console.error("Error in updating manageengine credientials:", error);
+        throw error;
+    }
+}
+
 module.exports = {
-    getUser, storeUser
+    getUser, storeUser, getManageEngineCredientials, updateManageEngineCredientials
 }

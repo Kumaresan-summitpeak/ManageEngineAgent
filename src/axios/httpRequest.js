@@ -1,6 +1,8 @@
 
-const { getUser } = require("../services/store");
-const { createClient } = require("./httpClient");
+const { getUser, getManageEngineCredientials } = require("../services/store");
+const { createClient, manageEngineClient } = require("./httpClient");
+const env = require("../config");
+
 
 /**
  * @description It will accepts the parameters and make HTTP requests and return the response.
@@ -96,4 +98,47 @@ async function httpRequest(teamsChatId, type, url, method = "GET", data = null) 
 }
 
 
-module.exports = { httpRequest };
+/**
+ * @description It will create the HTTP Client and return the response.
+ * @param {*} teamsChatId 
+ * @param {*} type 
+ * @param {*} url 
+ * @param {*} method 
+ * @param {*} data 
+ * @returns response {Object}
+ */
+//  const { ZohoManageEngineAccessToken } = env
+// console.log("ZohoManageEngineAccessToken:",ZohoManageEngineAccessToken)
+async function manageEngineHttpRequest(url, method = "GET", data = null) {
+    try {
+
+        const { ZohoManageEngineAccessToken } = env
+        // It will create the Http client and return
+        const client = manageEngineClient();
+
+        const credientials = await getManageEngineCredientials()
+
+        let token = `Zoho-oauthtoken ${credientials.accessToken}`
+
+        console.log("tokentokentoken:", token)
+
+        // Headers Configuration
+        const config = {
+            headers: {
+                "Authorization": token,
+                "Accept": "application/vnd.manageengine.sdp.v3+json",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        let response;
+        response = await httpResponse(client, method, url, data, config)
+
+        return response;
+    } catch (error) {
+        console.error(`Error making ${method} request:`, error);
+        throw error;
+    }
+}
+
+module.exports = { httpRequest, manageEngineHttpRequest };

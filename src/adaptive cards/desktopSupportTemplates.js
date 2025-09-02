@@ -4,7 +4,7 @@
 
 const desktopSupportTicketTemplateAdaptiveCard = () => {
     try {
-        
+
         const card = {
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",
