@@ -2,10 +2,6 @@ const axios = require("axios");
 const { getUser, storeUser, getManageEngineCredientials, updateManageEngineCredientials } = require("../services/store");
 const { ZohoClientId, ZohoClientSecret, ZohoRedirectUrl, ZohoBaseUrl } = require("../config");
 
-
-
-
-
 /**
  * @description It will accepts the refreshtoken and return new accessToken
  * @param {*} params Which contains the url,type,teamsChatId and refreshToken
@@ -97,7 +93,10 @@ function createClient(teamsChatId, type) {
     return client;
 }
 
-
+/**
+ * @description It will accepts the generate new refreshtoken.
+ * @returns accessToken
+ */
 async function manageEnginerefreshAndGetAccessToken() {
     try {
 
@@ -129,6 +128,10 @@ async function manageEnginerefreshAndGetAccessToken() {
     }
 }
 
+/**
+ * @description It will create the HTTP Client and If unauthorized access which means [404] It will fetch the user refreshToken and reconfigure the HTTP client {Object}
+ * @returns client object
+ */
 function manageEngineClient() {
     const client = axios.create();
 

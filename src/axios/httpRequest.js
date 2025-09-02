@@ -100,15 +100,11 @@ async function httpRequest(teamsChatId, type, url, method = "GET", data = null) 
 
 /**
  * @description It will create the HTTP Client and return the response.
- * @param {*} teamsChatId 
- * @param {*} type 
  * @param {*} url 
  * @param {*} method 
  * @param {*} data 
  * @returns response {Object}
  */
-//  const { ZohoManageEngineAccessToken } = env
-// console.log("ZohoManageEngineAccessToken:",ZohoManageEngineAccessToken)
 async function manageEngineHttpRequest(url, method = "GET", data = null) {
     try {
 

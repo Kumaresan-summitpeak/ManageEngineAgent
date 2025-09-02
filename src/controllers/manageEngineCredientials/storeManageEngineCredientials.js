@@ -1,4 +1,4 @@
-const ManageEngineCredientialsSchema = require("../../Models/manageEngineCredientialsModel")
+const ManageEngineCredientialsSchema = require("../../Models/ManageEngineCredientialsModel")
 
 const storeManageEngineCredientials = async (req, res) => {
     try {

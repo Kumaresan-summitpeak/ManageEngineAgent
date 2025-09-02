@@ -1,5 +1,5 @@
 const User = require("../Models/UserModel");
-const ManageEngineCredientialsSchema = require("../Models/manageEngineCredientialsModel")
+const ManageEngineCredientialsSchema = require("../Models/ManageEngineCredientialsModel")
 
 /**
  * @description It will the user data and return.

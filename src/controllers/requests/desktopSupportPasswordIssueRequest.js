@@ -2,6 +2,13 @@ const { manageEngineHttpRequest } = require("../../axios/httpRequest");
 const qs = require("qs");
 const env = require("../../config");
 
+/**
+ * 
+ * @param {*} context 
+ * @param {*} state 
+ * @param {*} data 
+ * @returns "Text based message with create data"
+ */
 const desktopSupportPasswordIssueRequest = async (context, state, data) => {
     try {
         const { ZohoManageEngineUrl } = env;
