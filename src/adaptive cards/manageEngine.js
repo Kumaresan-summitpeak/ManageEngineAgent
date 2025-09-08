@@ -11,7 +11,7 @@ const manageEngineSSOAdaptiveCard = async (context) => {
         const userId = context.activity.from.id;
         const conversationReference = TurnContext.getConversationReference(context.activity);
         const nonce = Math.random().toString(36).substring(2);
-        const authState = Buffer.from(JSON.stringify({ userId, nonce, conversationReference })).toString("base64url")
+        const authState = Buffer.from(JSON.stringify({ userId, nonce, conversationReference }))
         const card = {
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",

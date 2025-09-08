@@ -1,6 +1,7 @@
 // Import required packages
 const express = require("express");
 const axios = require("axios");
+const { CardFactory, TurnContext } = require('botbuilder');
 
 // This agent's adapter
 const adapter = require("./adapter");
@@ -12,6 +13,7 @@ const env = require("./config");
 const { storeUser } = require("./services/store");
 const { jwtDecode } = require("./utils/jwt");
 const { storeManageEngineCredientials } = require("./controllers/manageEngineCredientials/storeManageEngineCredientials");
+const { manageEngineLoginWelcomeCard } = require("./adaptive cards/manageEngineLoginWelcomeCard");
 
 // Create express application.
 const expressApp = express();
@@ -37,14 +39,14 @@ expressApp.post("/api/messages", async (req, res) => {
 expressApp.post("/api/manageEngine", storeManageEngineCredientials);
 
 /**
- * @ callback function for manageEngine accesstoken.
+ * @description callback function for manageEngine accesstoken.
  */
 expressApp.get("/manageEngine/callback", async (req, res) => {
   try {
 
-    const { ZohoClientId, ZohoClientSecret, ZohoRedirectUrl, ZohoBaseUrl } = env
+    const { ZohoClientId, ZohoClientSecret, ZohoRedirectUrl, ZohoBaseUrl, MicrosoftAppId } = env
     const { code, state } = req.query;
-    const decodeState = JSON.parse(Buffer.from(state, "base64url").toString());
+    const decodeState = await JSON.parse(state?.toString());
     const userId = decodeState.userId
 
     // Build form body
@@ -81,7 +83,15 @@ expressApp.get("/manageEngine/callback", async (req, res) => {
     }
     );
 
-    res.send(`<html><body><h2>✅ Connected to ManageEngine. You can close this tab.</h2></body></html>`);
+    await adapter.continueConversationAsync(
+      MicrosoftAppId,
+      decodeState.conversationReference,
+      async (context) => {
+        await context.sendActivity({ attachments: [CardFactory.adaptiveCard(manageEngineLoginWelcomeCard(decodeToken?.first_name ?? "User", decodeToken?.last_name ?? ""))] });
+      }
+    );
+
+    return res.send(`<html><body><h2>✅ Connected to ManageEngine. You can close this tab.</h2></body></html>`);
   } catch (error) {
     console.error("Error in manageengine callback:", error)
     return res.status(500).json({ status: false, statusCode: 500, message: error.message })
