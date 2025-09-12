@@ -75,7 +75,7 @@ app.activity(ActivityTypes.Message, async (context, state) => {
 
   console.log(context)
 
-  const teamsChatId = context.activity.from.id
+  const teamsChatId = context.activity.from.id;
 
   const { isAuthenticated, message } = await userAuthentication(teamsChatId, "manageEngine");
 
