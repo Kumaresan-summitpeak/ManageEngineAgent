@@ -112,7 +112,6 @@ async function manageEnginerefreshAndGetAccessToken() {
 
         const body = new URLSearchParams(result);
 
-        // Send POST with body
         const { data } = await axios.post(
             `${ZohoBaseUrl}/oauth/v2/token`,
             body.toString(),

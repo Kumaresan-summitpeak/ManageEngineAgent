@@ -1,23 +1,96 @@
 [
     {
-        "name": "createTicket",
-        "description": "This will gives the template based available tickets in manage engine.",
-        "parameters": {}
+        "name": "awsSupport",
+        "description": "This will gather AWS support-related information from the user to assist with troubleshooting or resolving issues.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "It will aws support-related description from the user."
+                }
+            },
+            "required": [
+                "description"
+            ]
+        }
     },
     {
-        "name":"deskTopSupport",
-        "description": "This will gives the desktop ticket template.",
-        "parameters": {}
+        "name": "awsWorkSpaceProvision",
+        "description": "This will gather AWS support-related information from the user to assist with troubleshooting or resolving AWS WorkSpace provisioning issues.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "requestDetails": {
+                    "type": "string",
+                    "description": "Description of the support request or issue related to AWS WorkSpace that the user needs assistance with."
+                },
+                "workStation/floor": {
+                    "type": "string",
+                    "description": "Location of the workstation, including the floor number, to help AWS support understand the setup context."
+                },
+                "contactNumber/deskExtension": {
+                    "type": "string",
+                    "description": "User's contact number or desk extension to facilitate follow-up communication by AWS support."
+                }
+            },
+            "required": [
+                "requestDetails",
+                "workStation/floor",
+                "contactNumber/deskExtension"
+            ]
+        }
     },
     {
-        "name":"softwareSupport",
-        "description": "This will gives the software ticket template.",
-        "parameters": {}
+        "name": "awsService",
+        "description": "This will gather detailed information related to an AWS WorkSpace provisioning service request. It assists in troubleshooting or resolving issues related to user setup, connectivity, and configuration in AWS WorkSpaces.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "requestDetails": {
+                    "type": "string",
+                    "description": "A detailed description of the service request or issue related to AWS WorkSpace, including any errors, configuration problems, or setup challenges encountered."
+                },
+                "workStation/floor": {
+                    "type": "string",
+                    "description": "The physical location of the workstation, including the floor number, to provide context for AWS support when addressing the provisioning issue."
+                },
+                "contactNumber/deskExtension": {
+                    "type": "string",
+                    "description": "The user's contact number or desk extension, so AWS support can reach out for any follow-up or clarification regarding the service request."
+                }
+            },
+            "required": [
+                "requestDetails",
+                "workStation/floor",
+                "contactNumber/deskExtension"
+            ]
+        }
     },
     {
-        "name":"desktopSupportPasswordIssues",
-        "description": "This will gives the desktop support password issues ticket template.",
-        "parameters": {}
+        "name": "unBlockUrl",
+        "description": "This will get the unblock url from user to create the ticket.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "Please provide the url to unblock."
+                },
+                "catageory": {
+                    "type": "string",
+                    "description": "Please provide the category."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Please give the description under which its getting blocked."
+                }
+            },
+            "required": [
+                "url",
+                "catageory",
+                "description"
+            ]
+        }
     }
-
 ]

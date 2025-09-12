@@ -1,25 +1,25 @@
 const { manageEngineHttpRequest } = require("../../axios/httpRequest");
+const env = require("../../config")
 const qs = require("qs");
-const env = require("../../config");
 
-/**
- * 
- * @param {*} context 
- * @param {*} state 
- * @param {*} data 
- * @returns "Text based message with create data"
- */
-const desktopSupportPasswordIssueRequest = async (context, state, data) => {
+const unblockUrlTicket = async (context, state, parameters) => {
     try {
+
         const { ZohoManageEngineUrl } = env;
 
-        console.log("desktopSupportPasswordIssueRequestDaata:", data)
-        const { subject = "Password Issues", description = "Password Issues Description" } = data;
+        console.log("unblockUrlTicket:", JSON.stringify(parameters))
+
+        let formattedDescription = "";
+        for (key in parameters) {
+            let value = parameters[key];
+            formattedDescription += `${key}:${value}\n`;
+        }
+
 
         const requestPayload = {
             request: {
-                subject,
-                description,
+                subject: "Unblock a url",
+                description: formattedDescription,
                 requester: { email_id: "swathi.manikandan@indegene.com" },
                 // category: { name: "Software" },
                 // subcategory: { name: "Adobe Reader" },
@@ -39,15 +39,16 @@ const desktopSupportPasswordIssueRequest = async (context, state, data) => {
             body
         )
 
-        console.log("createTicketDataa", createTicket.data)
+        console.log("createTicketTTTT:", JSON.stringify(createTicket.data))
+        return "Network Support Unblock url ticket has been created successfully.";
 
-        return "form submittted successfully.";
     } catch (error) {
-        console.error("Error in desktopSupportPasswordIssueRequest: ", error);
+        console.error("Error in Network Support Unblock url ticket.", error)
         throw error;
     }
 }
 
+
 module.exports = {
-    desktopSupportPasswordIssueRequest
+    unblockUrlTicket
 }

@@ -4,16 +4,15 @@ const config = require("../config");
 const { ActivityTypes, CardFactory } = require("botbuilder")
 const { manageEngineSSOAdaptiveCard } = require("../adaptive cards/manageEngine");
 const { userAuthentication } = require("../middlewares/user");
-const { ticketTemplate } = require("../controllers/tickets/createTicketTemplate");
 
+// Incident request ticket imports
+const { awsSupportTicket } = require("../controllers/incidents/awsSupportTicket");
 
-// Handler imports
-const { desktopSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/desktopSupportTickets");
-const { softwareSupportTicketActionHandler } = require("../controllers/adaptiveCardsActionHandlers/softwareSupportTickets");
-const { desktopSupportasswordIssueTicketForm } = require("../controllers/adaptiveCardsActionHandlers/desktopSupportPasswordIssue");
+// Service request ticket imports
+const { awsWorkSpaceProvisionTicket } = require("../controllers/serviceTemplates/awsWorkSpaceProvisionTicket");
+const { awsServiceTicket } = require("../controllers/serviceTemplates/awsServiceTicket");
+const { unblockUrlTicket } = require("../controllers/serviceTemplates/unblockUrlTicket");
 
-// Requestimports
-const { desktopSupportPasswordIssueRequest } = require("../controllers/requests/desktopSupportPasswordIssueRequest");
 
 // See https://aka.ms/teams-ai-library to learn more about the Teams AI library.
 const { Application, ActionPlanner, OpenAIModel, PromptManager } = require("@microsoft/teams-ai");
@@ -47,18 +46,17 @@ const app = new Application({
 });
 
 
-// Handle the action here.
-app.ai.action("createTicket", ticketTemplate);
-app.ai.action("deskTopSupport", desktopSupportTicketActionHandler);
-app.ai.action("softwareSupport", softwareSupportTicketActionHandler);
-app.ai.action("desktopSupportPasswordIssues", desktopSupportasswordIssueTicketForm);
+/**
+ * @description Declare all the action handlers and separate incident and service related actions separatly.
+ */
 
+// Incident Action Handlers.
+app.ai.action("awsSupport", awsSupportTicket);
 
-// Adaptive cards
-app.adaptiveCards.actionSubmit('DesktopSupport', desktopSupportTicketActionHandler);
-app.adaptiveCards.actionSubmit('SoftwareSupport', softwareSupportTicketActionHandler);
-app.adaptiveCards.actionSubmit("DesktopSupportPasswordIssuesTicket", desktopSupportasswordIssueTicketForm);
-app.adaptiveCards.actionSubmit("CreatePasswordIssueTicket", desktopSupportPasswordIssueRequest)
+// Service Action Handlers.
+app.ai.action("awsWorkSpaceProvision", awsWorkSpaceProvisionTicket);
+app.ai.action("awsService", awsServiceTicket);
+app.ai.action("unBlockUrl", unblockUrlTicket);
 
 
 // Listen for user to say '/login' and then delete conversation state
@@ -74,6 +72,8 @@ app.message('/login', async (context, state) => {
 
 // Listen for ANY message to be received. MUST BE AFTER ANY OTHER MESSAGE HANDLERS
 app.activity(ActivityTypes.Message, async (context, state) => {
+
+  console.log(context)
 
   const teamsChatId = context.activity.from.id
 
