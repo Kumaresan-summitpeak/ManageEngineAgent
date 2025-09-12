@@ -8,7 +8,7 @@ env/.env.local
 appPackage/build
 
 env/
-.vscode
+.vscode/
 appPackage/build/
 
 # dependencies

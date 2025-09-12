@@ -2,6 +2,13 @@ const { manageEngineHttpRequest } = require("../../axios/httpRequest");
 const env = require("../../config")
 const qs = require("qs");
 
+/**
+ * 
+ * @param {*} context 
+ * @param {*} state 
+ * @param {*} parameters get the description
+ * @returns 
+ */
 const awsWorkSpaceProvisionTicket = async (context, state, parameters) => {
     try {
 
