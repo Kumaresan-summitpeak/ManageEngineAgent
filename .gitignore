@@ -7,6 +7,10 @@ env/.env.local
 .notification.playgroundstore.json
 appPackage/build
 
+env/
+.vscode
+appPackage/build/
+
 # dependencies
 node_modules/
 
